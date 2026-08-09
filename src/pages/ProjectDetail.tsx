@@ -117,6 +117,7 @@ export default function ProjectDetail() {
             <img 
               src={project.image} 
               alt={`${project.name} Main View`}
+              loading="lazy"
               className="w-full h-auto object-cover"
             />
           </div>
@@ -129,6 +130,7 @@ export default function ProjectDetail() {
                   <img 
                     src={thumb} 
                     alt={`${project.name} thumbnail ${idx + 1}`}
+                    loading="lazy"
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -139,6 +141,7 @@ export default function ProjectDetail() {
                   <img 
                     src={`https://placehold.co/600x400/112240/00f0ff?text=${project.name.replace(/ /g, '+')}+Thumbnail+1`} 
                     alt={`${project.name} thumbnail 1`}
+                    loading="lazy"
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -146,6 +149,7 @@ export default function ProjectDetail() {
                   <img 
                     src={`https://placehold.co/600x400/112240/00f0ff?text=${project.name.replace(/ /g, '+')}+Thumbnail+2`} 
                     alt={`${project.name} thumbnail 2`}
+                    loading="lazy"
                     className="w-full h-full object-cover"
                   />
                 </div>

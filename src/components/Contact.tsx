@@ -50,7 +50,7 @@ export default function Contact() {
         variants={fadeUp}
         className="mx-auto max-w-2xl text-center"
       >
-        <p className="mb-4 font-mono text-cyan text-sm">05. What's Next?</p>
+        <p className="mb-4 font-mono text-cyan text-sm">What's Next?</p>
         <h2 className="text-4xl md:text-5xl font-bold text-lightest-slate mb-6">Get In Touch</h2>
         
         <p className="mb-8 text-lg text-slate">
@@ -58,17 +58,17 @@ export default function Contact() {
         </p>
 
         <div className="mb-12 flex flex-col items-center gap-4 text-slate">
-          <div className="flex items-center gap-3">
-            <span className="font-mono text-cyan">Email:</span>
-            <span>dinhquangthanh0107@gmail.com</span>
+          <div className="flex items-center gap-2 sm:gap-3">
+            <span className="font-mono text-cyan text-[min(4vw,1rem)] sm:text-base whitespace-nowrap">Email:</span>
+            <span className="text-[min(4vw,1rem)] sm:text-base whitespace-nowrap">dinhquangthanh0107@gmail.com</span>
           </div>
-          <div className="flex items-center gap-3">
-            <span className="font-mono text-cyan">Phone:</span>
-            <span>0906923347</span>
+          <div className="flex items-center gap-2 sm:gap-3">
+            <span className="font-mono text-cyan text-[min(4vw,1rem)] sm:text-base whitespace-nowrap">Phone:</span>
+            <span className="text-[min(4vw,1rem)] sm:text-base whitespace-nowrap">0906923347</span>
           </div>
-          <div className="flex items-center gap-3">
-            <span className="font-mono text-cyan">Location:</span>
-            <span>Binh Thanh, Ho Chi Minh City, Viet Nam</span>
+          <div className="flex items-center gap-2 sm:gap-3">
+            <span className="font-mono text-cyan text-[min(4vw,1rem)] sm:text-base whitespace-nowrap">Location:</span>
+            <span className="text-[min(3.2vw,1rem)] sm:text-base whitespace-nowrap">Binh Thanh, Ho Chi Minh City, Viet Nam</span>
           </div>
         </div>
 

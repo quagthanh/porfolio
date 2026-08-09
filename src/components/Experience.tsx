@@ -14,7 +14,7 @@ export default function Experience() {
         <div className="section-heading-wrapper justify-center">
           <div className="section-heading-bg">EXPERIENCE</div>
           <h2 className="section-heading section-heading-content">
-            <span className="section-heading-number">04.</span> Experiences
+            Experiences
           </h2>
         </div>
 

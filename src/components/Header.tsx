@@ -5,17 +5,15 @@ import { motion, AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
 
 const navLinks = [
-  { name: 'About', path: '/#about' },
-  { name: 'Skills', path: '/#skills' },
-  { name: 'Projects', path: '/#projects' },
-  { name: 'Experience', path: '/#experience' },
-  { name: 'Contact', path: '/#contact' },
+  { name: 'Resume', path: '/resume' },
+  { name: 'Skills', path: '/skills' },
+  { name: 'Projects', path: '/projects' },
+  { name: 'Contact', path: '/contact' },
 ];
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('');
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
   const location = useLocation();
   const navigate = useNavigate();
@@ -46,19 +44,6 @@ export default function Header() {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-      
-      const sections = navLinks.map(link => link.path.replace('/#', ''));
-      let current = '';
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 150 && rect.bottom >= 150) {
-            current = section;
-          }
-        }
-      }
-      setActiveSection(current);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -67,20 +52,7 @@ export default function Header() {
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
     e.preventDefault();
     setIsOpen(false);
-    
-    const [route, hash] = path.split('#');
-    
-    if (location.pathname !== route) {
-      navigate(path);
-      setTimeout(() => {
-        const element = document.getElementById(hash);
-        element?.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
-    } else {
-      const element = document.getElementById(hash);
-      element?.scrollIntoView({ behavior: 'smooth' });
-      window.history.pushState(null, '', path);
-    }
+    navigate(path);
   };
 
   return (
@@ -110,22 +82,30 @@ export default function Header() {
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link, i) => {
-            const isActive = activeSection === link.path.replace('/#', '');
+            const isActive = location.pathname === link.path || (link.path === '/projects' && location.pathname.startsWith('/projects/'));
             return (
-              <motion.a
-                key={link.path}
-                href={link.path}
-                onClick={(e) => handleNavClick(e, link.path)}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: i * 0.1 }}
-                className={clsx(
-                  "text-sm font-medium transition-colors",
-                  isActive ? "text-cyan" : "text-lightest-slate hover:text-cyan"
+              <div key={link.path} className="relative flex flex-col items-center justify-center">
+                <motion.a
+                  href={link.path}
+                  onClick={(e) => handleNavClick(e, link.path)}
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: i * 0.1 }}
+                  className={clsx(
+                    "text-sm font-medium transition-colors py-1",
+                    isActive ? "text-cyan" : "text-lightest-slate hover:text-cyan"
+                  )}
+                >
+                  {link.name}
+                </motion.a>
+                {isActive && (
+                  <motion.div
+                    layoutId="active-nav-underline"
+                    className="absolute -bottom-1 left-0 right-0 h-[2px] bg-cyan"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
                 )}
-              >
-                {link.name}
-              </motion.a>
+              </div>
             );
           })}
           <motion.a
@@ -148,6 +128,8 @@ export default function Header() {
           className="md:hidden z-50 p-2 text-cyan"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
+          aria-expanded={isOpen}
+          aria-controls="mobile-menu"
         >
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>

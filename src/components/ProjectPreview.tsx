@@ -18,9 +18,9 @@ export default function ProjectPreview() {
         {/* SectionTitle with blurred background text */}
         <div className="section-heading-wrapper justify-center">
            <div className="section-heading-bg">PROJECTS</div>
-           <h2 className="section-heading section-heading-content">
-             <span className="section-heading-number">03.</span> Some Things I've Built
-             <div className="h-[1px] bg-lightest-navy w-48 md:w-72 hidden md:block ml-4" />
+           <h2 className="section-heading section-heading-content whitespace-nowrap">
+             Some Things I've Built
+             <div className="h-[1px] bg-lightest-navy w-16 sm:w-48 md:w-72 hidden sm:block ml-4" />
            </h2>
         </div>
 
@@ -43,6 +43,7 @@ export default function ProjectPreview() {
                     <img 
                       src={project.image} 
                       alt={project.name}
+                      loading="lazy"
                       className="h-full w-full object-cover grayscale opacity-70 transition-all duration-500 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
                     />
                   </div>

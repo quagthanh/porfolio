@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { fadeUp } from '../animations/variants';
 import { ArrowDown } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Hero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -122,13 +123,14 @@ export default function Hero() {
     };
   }, []);
 
+  const navigate = useNavigate();
+
   const scrollToAbout = () => {
-    const aboutSection = document.getElementById('about');
-    aboutSection?.scrollIntoView({ behavior: 'smooth' });
+    navigate('/resume');
   };
 
   return (
-    <section className="relative flex min-h-[100vh] flex-col justify-center pt-16">
+    <section className="relative flex min-h-[90vh] flex-col justify-center pt-16">
       
       {/* 
         Full-Bleed Breakout Wrapper 
@@ -153,11 +155,11 @@ export default function Hero() {
           Hi, my name is
         </motion.p>
         
-        <motion.h1 variants={fadeUp} custom={2} className="heading-primary mb-2 text-5xl sm:text-7xl">
+        <motion.h1 variants={fadeUp} custom={2} className="heading-primary mb-2 text-[min(10vw,4.5rem)] sm:text-7xl whitespace-nowrap">
           Dinh Quang Thanh.
         </motion.h1>
         
-        <motion.h2 variants={fadeUp} custom={3} className="mb-6 text-4xl font-bold text-slate sm:text-6xl">
+        <motion.h2 variants={fadeUp} custom={3} className="mb-6 text-[min(6vw,3.75rem)] font-bold text-slate sm:text-6xl whitespace-nowrap">
           FRONTEND DEVELOPER INTERN.
         </motion.h2>
         

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { fadeUp } from '../animations/variants';
 import Education from './Education';
+import PersonalInfo from './PersonalInfo';
 
 export default function About() {
   return (
@@ -12,9 +13,9 @@ export default function About() {
         variants={fadeUp}
       >
         <div className="section-heading-wrapper">
-          <h2 className="section-heading section-heading-content">
-            <span className="section-heading-number">01.</span> About Me
-            <div className="h-[1px] bg-lightest-navy w-[200px] md:w-[300px] ml-4" />
+          <h2 className="section-heading section-heading-content whitespace-nowrap">
+            About Me
+            <div className="h-[1px] bg-lightest-navy w-24 sm:w-[200px] md:w-[300px] ml-4 hidden sm:block" />
           </h2>
         </div>
         
@@ -34,6 +35,7 @@ export default function About() {
               <img 
                 src="/Thanh.png" 
                 alt="Dinh Quang Thanh"
+                loading="lazy"
                 className="h-full w-full object-cover transition-all duration-300 group-hover:grayscale-0"
               />
             </div>
@@ -41,6 +43,8 @@ export default function About() {
             <div className="absolute -right-4 -bottom-4 -z-10 h-full w-full rounded-lg border-2 border-cyan transition-transform duration-300 group-hover:-translate-x-2 group-hover:-translate-y-2" />
           </div>
         </div>
+
+        <PersonalInfo />
       </motion.div>
 
       <div className="mt-20">

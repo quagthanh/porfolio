@@ -58,7 +58,7 @@ export default function Skills() {
           <div className="section-heading-wrapper justify-center">
             <div className="section-heading-bg">TECHNOLOGIES</div>
             <h2 className="section-heading section-heading-content">
-              <span className="section-heading-number">02.</span> Technologies I Work With
+              Technologies I Work With
             </h2>
           </div>
         </motion.div>
