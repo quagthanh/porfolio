@@ -59,10 +59,10 @@ Prerequisites: Node.js (v18+ recommended).
 *(You can replace the paths below with actual screenshots of your website)*
 
 **1. Hero Section (Canvas Interactive Background & Dark Mode)**
-![Hero Section Screenshot](./public/screenshot-hero.png)
+![Hero Section Screenshot](./public/homepage.png)
 
 **2. Projects Page (Data-Driven Filter & Search)**
-![Projects Section Screenshot](./public/screenshot-projects.png)
+![Projects Section Screenshot](./public/projects.png)
 
-**3. Contact Form (Zod Validation & Light Mode)**
-![Contact Form Screenshot](./public/screenshot-contact.png)
+**3. Skill Section**
+![Skill Section Screenshot](./public/skill.png)
