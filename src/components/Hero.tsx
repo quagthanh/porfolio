@@ -1,23 +1,153 @@
+import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { fadeUp } from '../animations/variants';
 import { ArrowDown } from 'lucide-react';
 
 export default function Hero() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let animationFrameId: number;
+    let time = 0;
+
+    // Mouse state
+    const mouse = { x: -1000, y: -1000, radius: 250 };
+
+    const resize = () => {
+      canvas.width = window.innerWidth;
+      // We want the canvas to match the height of the Hero section, which is its parent
+      canvas.height = canvas.parentElement?.clientHeight || window.innerHeight;
+    };
+    
+    // Initial resize and event listener
+    resize();
+    window.addEventListener('resize', resize);
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+    };
+
+    const handleMouseLeave = () => {
+      mouse.x = -1000;
+      mouse.y = -1000;
+    };
+
+    canvas.addEventListener('mousemove', handleMouseMove);
+    canvas.addEventListener('mouseleave', handleMouseLeave);
+
+    const lines = 10; // Reduced number of wave lines for minimalistic look
+    const pointsPerLine = 150; // Resolution of each line
+    
+    const draw = () => {
+      // Clear canvas to allow the parent div's dynamic background (bg-navy) to show through
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const isLightMode = document.documentElement.classList.contains('light');
+
+      time += 0.005;
+
+      for (let i = 0; i < lines; i++) {
+        ctx.beginPath();
+        
+        const verticalPadding = 100;
+        const drawableHeight = canvas.height - verticalPadding * 2;
+        const yOffset = verticalPadding + (i / (lines - 1)) * drawableHeight;
+        
+        const amplitude = 50 + i * 15;
+        const frequency = 0.001 + i * 0.0002;
+        const phase = i * 0.3;
+
+        const isCyan = i % 2 === 0;
+        const opacity = 0.4 + (i / lines) * 0.4;
+        
+        if (isLightMode) {
+          ctx.strokeStyle = isCyan ? `rgba(5, 150, 105, ${opacity})` : `rgba(37, 99, 235, ${opacity})`;
+          ctx.shadowColor = isCyan ? '#059669' : '#2563eb';
+        } else {
+          ctx.strokeStyle = isCyan ? `rgba(147, 255, 216, ${opacity})` : `rgba(84, 140, 255, ${opacity})`;
+          ctx.shadowColor = isCyan ? '#93FFD8' : '#548CFF';
+        }
+        
+        ctx.lineWidth = 2;
+        ctx.shadowBlur = 15;
+
+        for (let j = 0; j <= pointsPerLine; j++) {
+          const x = (j / pointsPerLine) * canvas.width;
+          
+          // Calculate natural wave Y position
+          let y = yOffset 
+            + Math.sin(x * frequency + time + phase) * amplitude
+            + Math.cos(x * frequency * 0.5 - time) * amplitude * 0.5;
+
+          // Mouse Repulsion Logic
+          const dx = x - mouse.x;
+          const dy = y - mouse.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < mouse.radius) {
+            const force = (mouse.radius - dist) / mouse.radius;
+            const pushDirection = dy > 0 ? 1 : -1;
+            // Smooth cubic easing for magnetic feel
+            const smoothForce = force * force * force; 
+            y += pushDirection * smoothForce * 120;
+          }
+
+          if (j === 0) {
+            ctx.moveTo(x, y);
+          } else {
+            ctx.lineTo(x, y);
+          }
+        }
+        
+        ctx.stroke();
+      }
+
+      animationFrameId = requestAnimationFrame(draw);
+    };
+
+    draw();
+
+    return () => {
+      window.removeEventListener('resize', resize);
+      canvas.removeEventListener('mousemove', handleMouseMove);
+      canvas.removeEventListener('mouseleave', handleMouseLeave);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
   const scrollToAbout = () => {
     const aboutSection = document.getElementById('about');
     aboutSection?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <section className="relative flex min-h-[90vh] flex-col justify-center pt-16">
-      {/* Background Glow */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full blur-[120px] pointer-events-none" style={{ backgroundColor: 'rgba(121, 0, 255, 0.25)' }} />
+    <section className="relative flex min-h-[100vh] flex-col justify-center pt-16">
+      
+      {/* 
+        Full-Bleed Breakout Wrapper 
+        Uses negative translation to span 100vw while keeping 
+        content constrained to parent's padding
+      */}
+      <div className="absolute top-0 left-1/2 w-screen h-full -translate-x-1/2 -z-10 overflow-hidden bg-navy transition-colors duration-300">
+        <canvas ref={canvasRef} className="w-full h-full block opacity-60" />
+        
+        {/* Gradient mask to fade out the waves behind the text on the left side */}
+        <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-transparent pointer-events-none" />
+      </div>
 
       <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
         variants={fadeUp}
+        className="relative z-10"
       >
         <motion.p variants={fadeUp} custom={1} className="mb-5 ml-1 font-mono text-cyan">
           Hi, my name is
@@ -62,7 +192,7 @@ export default function Hero() {
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 1 }}
         onClick={scrollToAbout}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-cyan hover:text-white transition-colors cursor-pointer"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-cyan hover:text-white transition-colors cursor-pointer z-10"
         aria-label="Scroll down"
       >
         <ArrowDown size={32} />

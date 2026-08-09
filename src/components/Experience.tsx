@@ -35,8 +35,8 @@ export default function Experience() {
               );
 
               const ExperienceCard = (
-                <div className="w-full rounded-lg bg-[#112240] p-6 shadow-xl border border-white/5 relative z-20">
-                  <h3 className="text-xl md:text-2xl font-bold text-white mb-1">{exp.role}</h3>
+                <div className="w-full rounded-lg bg-light-navy p-6 shadow-xl border border-lightest-navy relative z-20">
+                  <h3 className="text-xl md:text-2xl font-bold text-lightest-slate mb-1">{exp.role}</h3>
                   <p className="text-md text-light-slate font-mono mb-6">{exp.company}</p>
                   
                   {exp.description && (

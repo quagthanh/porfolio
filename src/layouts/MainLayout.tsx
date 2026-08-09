@@ -18,7 +18,7 @@ export default function MainLayout() {
   const variants = isProjectDetail ? routeSlide : routeFadeScale;
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col overflow-x-hidden">
       <Header />
       <main className="flex-1 w-full mx-auto px-6 md:px-12 lg:px-12" style={{ maxWidth: 'var(--container-width)' }}>
         <AnimatePresence mode="wait">

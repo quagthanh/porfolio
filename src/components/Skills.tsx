@@ -37,7 +37,15 @@ export default function Skills() {
   return (
     <section id="skills" className="relative section-container w-full">
       {/* Grid Pattern Background */}
-      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none" style={{ backgroundImage: 'linear-gradient(to right, #ffffff1a 1px, transparent 1px), linear-gradient(to bottom, #ffffff1a 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+      <div 
+        className="absolute inset-0 z-0 opacity-20 pointer-events-none" 
+        style={{ 
+          backgroundImage: 'linear-gradient(to right, var(--color-slate) 1px, transparent 1px), linear-gradient(to bottom, var(--color-slate) 1px, transparent 1px)', 
+          backgroundSize: '40px 40px',
+          maskImage: 'radial-gradient(ellipse at center, black 20%, transparent 70%)',
+          WebkitMaskImage: 'radial-gradient(ellipse at center, black 20%, transparent 70%)'
+        }} 
+      />
 
       <div className="relative z-10 w-full">
         <motion.div
@@ -77,10 +85,10 @@ export default function Skills() {
                   return (
                     <div
                       key={skill}
-                      className="flex items-center gap-2 rounded-lg bg-[#1e223d] border border-white/10 px-4 py-2 hover:border-cyan/50 transition-colors shadow-sm"
+                      className="flex items-center gap-2 rounded-lg bg-light-navy border border-lightest-navy px-4 py-2 hover:border-cyan/50 transition-colors shadow-sm"
                     >
                       <IconComponent size={16} className="text-cyan flex-shrink-0" />
-                      <span className="text-[#e2e8f0] text-sm font-medium">{skill}</span>
+                      <span className="text-lightest-slate text-sm font-medium">{skill}</span>
                     </div>
                   );
                 })}

@@ -30,11 +30,11 @@ export default function About() {
           
           <div className="relative mx-auto w-full max-w-[300px]">
             <div className="relative aspect-square w-full rounded-lg bg-cyan/20 overflow-hidden group">
-              <div className="absolute inset-0 bg-cyan mix-blend-multiply opacity-50 transition-opacity duration-300 group-hover:opacity-0 z-10" />
+              <div className="absolute inset-0 transition-opacity duration-300 group-hover:opacity-0 z-10" />
               <img 
-                src="https://placehold.co/400x400/112240/00f0ff?text=Thanh" 
+                src="/Thanh.png" 
                 alt="Dinh Quang Thanh"
-                className="h-full w-full object-cover grayscale transition-all duration-300 group-hover:grayscale-0"
+                className="h-full w-full object-cover transition-all duration-300 group-hover:grayscale-0"
               />
             </div>
             {/* Decorative border */}

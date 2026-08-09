@@ -25,7 +25,7 @@ export default function Education() {
           >
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-2">
               <h4 className="text-xl font-bold text-white flex items-center gap-2">
-                🎓 {edu.institution}
+              {edu.institution}
               </h4>
               <span className="font-mono text-sm text-cyan whitespace-nowrap">{edu.period}</span>
             </div>
