@@ -1,0 +1,171 @@
+@import "tailwindcss";
+
+@theme {
+  --font-mono: 'Fira Code', monospace;
+  --color-cyan: var(--cyan);
+  --color-purple: var(--purple);
+  --color-blue: var(--blue);
+  --color-light-mint: var(--light-mint);
+  --color-coral: var(--coral);
+  
+  --color-navy: var(--navy); 
+  --color-light-navy: var(--light-navy);
+  --color-lightest-navy: var(--lightest-navy);
+  
+  --color-slate: var(--slate);
+  --color-light-slate: var(--light-slate);
+  --color-lightest-slate: var(--lightest-slate);
+  --color-white: var(--white);
+}
+
+:root {
+  --cyan: #93FFD8;
+  --purple: #7900FF;
+  --blue: #548CFF;
+  --light-mint: #CFFFDC;
+  --coral: #ff5252;
+  
+  --navy: #0b0717; 
+  --light-navy: #150f26;
+  --lightest-navy: #231b3e;
+  
+  --slate: #8892b0;
+  --light-slate: #a8b2d1;
+  --lightest-slate: #ccd6f6;
+  --white: #e6f1ff;
+  
+  --bg-gradient: linear-gradient(135deg, #05020a 0%, #0b0717 100%);
+}
+
+html.light {
+  --cyan: #059669; /* Emerald 600 - High contrast */
+  --purple: #7c3aed; /* Violet 600 */
+  --blue: #2563eb; /* Blue 600 */
+  --light-mint: #d1fae5; /* Emerald 100 */
+  --coral: #ef4444; /* Red 500 */
+  
+  --navy: #f8fafc; /* Slate 50 */
+  --light-navy: #ffffff; /* White */
+  --lightest-navy: #e2e8f0; /* Slate 200 */
+  
+  --slate: #475569; /* Slate 600 */
+  --light-slate: #64748b; /* Slate 500 */
+  --lightest-slate: #0f172a; /* Slate 900 */
+  --white: #020617; /* Slate 950 */
+  
+  --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+:root {
+  /* Container & Spacing Scale */
+  --container-width: 1100px;
+  --section-padding: 6rem;
+  --content-padding: 1.5rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  
+  /* Typography Scale */
+  --heading-xl: 3.5rem; /* ~56px */
+  --heading-lg: 2.5rem; /* ~40px */
+  --heading-md: 1.75rem; /* ~28px */
+  --heading-sm: 1.25rem; /* ~20px */
+  --text-base: 1rem;
+  
+  /* Radii */
+  --radius-card: 8px;
+  --radius-btn: 4px;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem; /* Height of sticky navbar */
+}
+
+body {
+  font-family: var(--font-mono);
+  @apply bg-navy text-slate antialiased transition-colors duration-300;
+  min-height: 100vh;
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-navy;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-light-slate rounded-full;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-cyan;
+}
+
+/* Utility classes for text */
+.heading-primary {
+  @apply text-lightest-slate font-bold tracking-tight;
+}
+
+.text-cyan {
+  color: var(--color-cyan);
+}
+
+.text-coral {
+  color: var(--color-coral);
+}
+
+/* Consistency Utility Classes */
+.section-container {
+  width: 100%;
+  padding-top: var(--section-padding);
+  padding-bottom: var(--section-padding);
+}
+
+.section-heading-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--space-xl);
+}
+
+.section-heading {
+  font-size: var(--heading-lg);
+  color: var(--color-lightest-slate);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin: 0;
+}
+
+.section-heading-number {
+  font-family: var(--font-mono);
+  font-size: var(--heading-sm);
+  color: var(--color-cyan);
+  font-weight: 400;
+}
+
+.section-heading-bg {
+  position: absolute;
+  font-size: calc(var(--heading-xl) * 1.5);
+  font-weight: 800;
+  color: rgba(121, 0, 255, 0.12); /* using #7900FF purple for glow */
+  filter: blur(4px);
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
+
+.section-heading-content {
+  position: relative;
+  z-index: 10;
+}

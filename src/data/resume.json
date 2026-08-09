@@ -1,0 +1,17 @@
+{
+  "education": [
+    {
+      "degree": "B.Sc. Computer Science",
+      "institution": "University of Technology",
+      "year": "2018 - 2022"
+    }
+  ],
+  "experience": [
+    {
+      "role": "Frontend Developer",
+      "company": "Tech Solutions Inc.",
+      "period": "2022 - Present",
+      "description": "Developed dynamic and responsive web applications using React and Tailwind CSS."
+    }
+  ]
+}

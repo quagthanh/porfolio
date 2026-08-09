@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "title": "E-Commerce App",
+    "description": "A fullstack shopping application.",
+    "tech": ["React", "Tailwind", "Node.js"],
+    "github": "https://github.com",
+    "demo": "https://demo.com",
+    "thumbnail": "https://placehold.co/600x400"
+  },
+  {
+    "id": 2,
+    "title": "Task Management Dashboard",
+    "description": "A Kanban-style task board with drag and drop features.",
+    "tech": ["Vue", "Vuex", "Firebase"],
+    "github": "https://github.com",
+    "demo": "https://demo.com",
+    "thumbnail": "https://placehold.co/600x400"
+  },
+  {
+    "id": 3,
+    "title": "Weather App",
+    "description": "Real-time weather application using OpenWeather API.",
+    "tech": ["React", "TypeScript", "Tailwind"],
+    "github": "https://github.com",
+    "demo": "https://demo.com",
+    "thumbnail": "https://placehold.co/600x400"
+  }
+]

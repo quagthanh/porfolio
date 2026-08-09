@@ -1,0 +1,14 @@
+[
+  {
+    "category": "Frontend",
+    "items": ["React", "TypeScript", "Tailwind CSS", "Framer Motion"]
+  },
+  {
+    "category": "Backend",
+    "items": ["Node.js", "Express", "NestJS", "Python"]
+  },
+  {
+    "category": "Tools",
+    "items": ["Git", "Docker", "Figma", "Webpack"]
+  }
+]
