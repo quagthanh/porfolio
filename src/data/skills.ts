@@ -14,7 +14,7 @@ export const skillsData: SkillGroup[] = [
   },
   {
     category: "Frontend",
-    items: ["React JS", "Next.js", "Zustand", "TailwindCSS"],
+    items: ["React JS", "Next.js", "Zustand", "TailwindCSS", "Ant Design", "shadcn/ui"],
   },
   {
     category: "Tools & Cloud",
