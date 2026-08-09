@@ -1,6 +1,6 @@
 # Portfolio Website - Dinh Quang Thanh
 
-This is a personal website (Portfolio/CV) developed as part of a technical assessment for the **Frontend Developer Intern** position at **PKS Tech & Education**.
+This is a personal website (Portfolio/CV).
 
 ## 🛠 Tech Stack
 - **Framework/Library**: React 19, Vite.
